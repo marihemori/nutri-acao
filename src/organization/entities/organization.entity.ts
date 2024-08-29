@@ -1,5 +1,5 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { SocialIntermediary } from './social-intermediary.entity';
+import { OrganizationAgent } from './organization-agent.entity';
 
 @Entity()
 export class Organization {
@@ -31,10 +31,10 @@ export class Organization {
   mainFoods: string[];
 
   @OneToMany(
-    () => SocialIntermediary,
-    (socialIntermediary) => socialIntermediary.ngo,
+    () => OrganizationAgent,
+    (organizationAgent) => organizationAgent.organization,
   )
-  socialIntermediaries: SocialIntermediary[];
+  organizationAgents: OrganizationAgent[];
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createAt: Date;

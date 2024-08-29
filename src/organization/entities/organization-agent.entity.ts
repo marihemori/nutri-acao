@@ -1,7 +1,8 @@
-import { Column, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Organization } from './organization.entity';
 
-export class SocialIntermediary {
+@Entity()
+export class OrganizationAgent {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -22,7 +23,7 @@ export class SocialIntermediary {
 
   @ManyToOne(
     () => Organization,
-    (organization) => organization.socialIntermediaries,
+    (organization) => organization.organizationAgents,
   )
-  ngo: Organization;
+  organization: Organization;
 }
