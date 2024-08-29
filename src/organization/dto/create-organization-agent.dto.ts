@@ -1,4 +1,4 @@
-export class CreateSocialIntermediaryDto {
+export class CreateOrganizationAgentDto {
   name: string;
   cpf: string;
   phone: string;

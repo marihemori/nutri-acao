@@ -2,7 +2,7 @@ import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Company } from './company.entity';
 
 @Entity()
-export class Intermediary {
+export class CompanyAgent {
   @PrimaryGeneratedColumn()
   id: string;
 

@@ -1,5 +1,5 @@
 import { Column, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { Ngo } from './ngo.entity';
+import { Organization } from './organization.entity';
 
 export class SocialIntermediary {
   @PrimaryGeneratedColumn('uuid')
@@ -20,6 +20,9 @@ export class SocialIntermediary {
   @Column()
   address: string;
 
-  @ManyToOne(() => Ngo, (ngo) => ngo.socialIntermediaries)
-  ngo: Ngo;
+  @ManyToOne(
+    () => Organization,
+    (organization) => organization.socialIntermediaries,
+  )
+  ngo: Organization;
 }

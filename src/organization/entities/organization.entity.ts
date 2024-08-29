@@ -2,7 +2,7 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { SocialIntermediary } from './social-intermediary.entity';
 
 @Entity()
-export class Ngo {
+export class Organization {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -22,6 +22,9 @@ export class Ngo {
   email: string;
 
   @Column()
+  password: string;
+
+  @Column()
   socialNumber: string;
 
   @Column('simple-array')
@@ -32,4 +35,10 @@ export class Ngo {
     (socialIntermediary) => socialIntermediary.ngo,
   )
   socialIntermediaries: SocialIntermediary[];
+
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  createAt: Date;
+
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  updateAt: Date;
 }

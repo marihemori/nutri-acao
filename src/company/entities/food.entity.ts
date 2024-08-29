@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Company } from './company.entity';
 
 @Entity()
@@ -18,6 +18,6 @@ export class Food {
   @Column()
   weight: number;
 
-  @ManyToOne(() => Company, (company) => company.foods)
+  @ManyToMany(() => Company, (company) => company.foods)
   company: Company;
 }

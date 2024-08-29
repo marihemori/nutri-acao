@@ -1,4 +1,4 @@
-export class CreateIntermediaryDto {
+export class CreateAgentDto {
   name: string;
   cpf: string;
   phone: string;

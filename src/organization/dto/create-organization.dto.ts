@@ -1,4 +1,4 @@
-export class CreateNgoDto {
+export class CreateOrganizationDto {
   name: string;
   description: string;
   cnpj: string;

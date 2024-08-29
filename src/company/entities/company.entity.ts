@@ -1,6 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Food } from './food.entity';
-import { Intermediary } from './intermediary.entity';
+import { CompanyAgent } from './company-agent.entity';
 
 @Entity()
 export class Company {
@@ -22,10 +22,19 @@ export class Company {
   @Column()
   email: string;
 
+  @Column()
+  password: string;
+
   @OneToMany(() => Food, (food) => food.company)
   foods: Food[];
 
   // Uma empresa pode ter várias intermediadores
-  @OneToMany(() => Intermediary, (intermediary) => intermediary.company)
-  intermediaries: Intermediary[];
+  @OneToMany(() => CompanyAgent, (agent) => agent.company)
+  intermediaries: CompanyAgent[];
+
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  createAt: Date;
+
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  updateAt: Date;
 }
