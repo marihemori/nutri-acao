@@ -1,8 +1,8 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { Organization } from './organization.entity';
+import { Company } from './company.entity';
 
 @Entity()
-export class OrganizationAgent {
+export class CompanyAgent {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -21,9 +21,7 @@ export class OrganizationAgent {
   @Column()
   address: string;
 
-  @ManyToOne(
-    () => Organization,
-    (organization) => organization.organizationAgents,
-  )
-  organization: Organization;
+  // Uma empresa pode ter várias intermediadores
+  @ManyToOne(() => Company, (company) => company.companyAgents)
+  company: Company;
 }

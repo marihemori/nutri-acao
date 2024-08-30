@@ -1,5 +1,7 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { OrganizationAgent } from './organization-agent.entity';
+import { OrganizationAgent } from './agent-organization.entity';
+import { MainFood } from './main-food.entity';
+import { ReceivedFood } from './received-food.entity';
 
 @Entity()
 export class Organization {
@@ -27,8 +29,15 @@ export class Organization {
   @Column()
   socialNumber: string;
 
-  @Column('simple-array')
-  mainFoods: string[];
+  @OneToMany(() => MainFood, (mainFood) => mainFood.organization, {
+    cascade: true,
+  })
+  mainFoods: MainFood[];
+
+  @OneToMany(() => ReceivedFood, (receivedFood) => receivedFood.organization, {
+    cascade: true,
+  })
+  receivedFoods: ReceivedFood[];
 
   @OneToMany(
     () => OrganizationAgent,

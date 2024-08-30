@@ -1,6 +1,6 @@
 export class CreateFoodDto {
   name: string;
-  type: string;
-  quantity: number;
+  type: string[];
   weight: number;
+  quantity: number;
 }
