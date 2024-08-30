@@ -1,5 +1,5 @@
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Company } from './company.entity';
+import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { v4 as uuidv4 } from 'uuid';
 
 @Entity()
 export class Food {
@@ -18,6 +18,11 @@ export class Food {
   @Column()
   weight: number;
 
-  @ManyToMany(() => Company, (company) => company.foods)
-  company: Company;
+  // @ManyToMany(() => Company, (company) => company.foods)
+  // company: Company;
+
+  @BeforeInsert()
+  setId() {
+    this.id = uuidv4();
+  }
 }

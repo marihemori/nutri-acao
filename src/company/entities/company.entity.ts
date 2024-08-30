@@ -1,5 +1,12 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Food } from './food.entity';
+import {
+  BeforeInsert,
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { v4 as uuidv4 } from 'uuid';
+// import { Food } from './food.entity';
 import { CompanyAgent } from './agent-company.entity';
 
 @Entity()
@@ -28,8 +35,8 @@ export class Company {
   @Column()
   password: string;
 
-  @OneToMany(() => Food, (food) => food.company)
-  foods: Food[];
+  // @OneToMany(() => Food, (food) => food.company)
+  // foods: Food[];
 
   // Uma empresa pode ter várias intermediadores
   @OneToMany(() => CompanyAgent, (agent) => agent.company)
@@ -40,4 +47,9 @@ export class Company {
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   updateAt: Date;
+
+  @BeforeInsert()
+  setId() {
+    this.id = uuidv4();
+  }
 }
