@@ -3,6 +3,7 @@ import { MainFoodDto } from '../food/main-food.dto';
 import { ReceivedFoodDto } from '../food/received-food.dto';
 
 export class OrganizationDto {
+  id: string;
   name: string;
   description: string;
   cnpj: string;

@@ -1,4 +1,4 @@
 export class UpdateMainFoodDto {
   name?: string;
-  type?: string[];
+  type?: string;
 }

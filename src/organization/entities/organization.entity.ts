@@ -1,4 +1,11 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BeforeInsert,
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { v4 as uuidv4 } from 'uuid';
 import { OrganizationAgent } from './agent-organization.entity';
 import { MainFood } from './main-food.entity';
 import { ReceivedFood } from './received-food.entity';
@@ -10,6 +17,9 @@ export class Organization {
 
   @Column()
   name: string;
+
+  @Column()
+  description: string;
 
   @Column()
   cnpj: string;
@@ -42,6 +52,7 @@ export class Organization {
   @OneToMany(
     () => OrganizationAgent,
     (organizationAgent) => organizationAgent.organization,
+    { cascade: true }, // cascade para que seja deletado o agente quando a organização for deletada
   )
   organizationAgents: OrganizationAgent[];
 
@@ -50,4 +61,9 @@ export class Organization {
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   updateAt: Date;
+
+  @BeforeInsert()
+  setId() {
+    this.id = uuidv4();
+  }
 }
