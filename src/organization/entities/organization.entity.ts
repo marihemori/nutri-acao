@@ -45,7 +45,7 @@ export class Organization {
   mainFoods: MainFood[];
 
   @OneToMany(() => ReceivedFood, (receivedFood) => receivedFood.organization, {
-    cascade: true,
+    cascade: ['insert', 'update', 'remove'],
   })
   receivedFoods: ReceivedFood[];
 

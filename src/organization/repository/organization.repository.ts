@@ -15,7 +15,7 @@ export class OrganizationRepository implements IOrganizationRepository {
   // Encontrar todas as organizações
   async findAllOrganizations(): Promise<Organization[]> {
     return this.organizationRepository.find({
-      relations: ['organizationAgents'],
+      relations: ['organizationAgents', 'mainFoods', 'receivedFoods'],
     });
   }
 
@@ -23,7 +23,7 @@ export class OrganizationRepository implements IOrganizationRepository {
   async findOrganizationById(id: string): Promise<Organization> {
     return this.organizationRepository.findOne({
       where: { id },
-      relations: ['organizationAgents'],
+      relations: ['organizationAgents', 'mainFoods', 'receivedFoods'],
     });
   }
 

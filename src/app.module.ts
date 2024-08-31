@@ -7,6 +7,7 @@ import { AgentCompanyModule } from './company/modules/agent-company.module';
 import { OrganizationModule } from './organization/modules/organization.module';
 import * as dotenv from 'dotenv';
 import { AgentOrganizationModule } from './organization/modules/agent-organization.module';
+import { MainFoodModule } from './organization/modules/main-food.module';
 
 dotenv.config();
 @Module({
@@ -25,6 +26,7 @@ dotenv.config();
     AgentCompanyModule,
     OrganizationModule,
     AgentOrganizationModule,
+    MainFoodModule,
   ],
   controllers: [AppController],
   providers: [AppService],
