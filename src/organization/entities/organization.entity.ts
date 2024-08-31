@@ -6,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
-import { OrganizationAgent } from './agent-organization.entity';
+import { AgentOrganization } from './agent-organization.entity';
 import { MainFood } from './main-food.entity';
 import { ReceivedFood } from './received-food.entity';
 
@@ -50,11 +50,11 @@ export class Organization {
   receivedFoods: ReceivedFood[];
 
   @OneToMany(
-    () => OrganizationAgent,
+    () => AgentOrganization,
     (organizationAgent) => organizationAgent.organization,
     { cascade: true }, // cascade para que seja deletado o agente quando a organização for deletada
   )
-  organizationAgents: OrganizationAgent[];
+  organizationAgents: AgentOrganization[];
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createAt: Date;

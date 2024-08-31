@@ -1,4 +1,4 @@
-export class CompanyAgentDto {
+export class AgentCompanyDto {
   id: string;
   name: string;
   cpf: string;

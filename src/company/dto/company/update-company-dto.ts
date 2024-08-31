@@ -1,4 +1,4 @@
-import { UpdateCompanyAgentDto } from '../agent/update-agent-company.dto';
+import { UpdateAgentCompanyDto } from '../agent/update-agent-company.dto';
 // import { UpdateFoodDto } from '../food/update-food.dto';
 
 export class UpdateCompanyDto {
@@ -10,5 +10,5 @@ export class UpdateCompanyDto {
   password?: string;
   phone?: string;
   // foodsToDonate?: UpdateFoodDto[];
-  companyAgents?: UpdateCompanyAgentDto[];
+  companyAgents?: UpdateAgentCompanyDto[];
 }

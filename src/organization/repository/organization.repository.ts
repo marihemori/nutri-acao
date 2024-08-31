@@ -14,13 +14,17 @@ export class OrganizationRepository implements IOrganizationRepository {
 
   // Encontrar todas as organizações
   async findAllOrganizations(): Promise<Organization[]> {
-    return this.organizationRepository.find();
+    return this.organizationRepository.find({
+      relations: ['organizationAgents'],
+    });
   }
 
   // Encontrar uma organização por ID
   async findOrganizationById(id: string): Promise<Organization> {
-    const organization = await this.organizationRepository.findOneBy({ id });
-    return organization;
+    return this.organizationRepository.findOne({
+      where: { id },
+      relations: ['organizationAgents'],
+    });
   }
 
   // Criar uma organização
@@ -43,7 +47,11 @@ export class OrganizationRepository implements IOrganizationRepository {
   }
 
   // Deletar uma organização
-  async deleteOrganization(id: string): Promise<void> {
-    await this.organizationRepository.delete(id);
+  async deleteOrganization(id: string): Promise<{ deleted: boolean }> {
+    const result = await this.organizationRepository.delete(id);
+    if (result.affected === 0) {
+      throw new Error(`Organização não encontrada!`);
+    }
+    return { deleted: true };
   }
 }

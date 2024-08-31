@@ -3,7 +3,7 @@ import { CompanyService } from '../services/company.service';
 import { CreateCompanyDto } from '../dto/company/create-company.dto';
 import { Company } from '../entities/company.entity';
 
-@Controller('companies')
+@Controller('company')
 export class CompanyController {
   constructor(private readonly companyService: CompanyService) {}
 

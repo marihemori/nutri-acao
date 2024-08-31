@@ -2,9 +2,11 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CompanyModule } from './company/company.module';
-import { OrganizationModule } from './organization/organization.module';
+import { CompanyModule } from './company/modules/company.module';
+import { AgentCompanyModule } from './company/modules/agent-company.module';
+import { OrganizationModule } from './organization/modules/organization.module';
 import * as dotenv from 'dotenv';
+import { AgentOrganizationModule } from './organization/modules/agent-organization.module';
 
 dotenv.config();
 @Module({
@@ -20,7 +22,9 @@ dotenv.config();
       synchronize: true,
     }),
     CompanyModule,
+    AgentCompanyModule,
     OrganizationModule,
+    AgentOrganizationModule,
   ],
   controllers: [AppController],
   providers: [AppService],

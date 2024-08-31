@@ -3,6 +3,7 @@ import { CreateMainFoodDto } from '../food/create-main-food.dto';
 import { ReceivedFoodDto } from '../food/received-food.dto';
 
 export class CreateOrganizationDto {
+  id: string;
   name: string;
   description: string;
   cnpj: string;
@@ -11,7 +12,7 @@ export class CreateOrganizationDto {
   phone: string;
   email: string;
   password: string;
-  mainFoods: CreateMainFoodDto[];
+  mainFoods?: CreateMainFoodDto[];
   receivedFoods?: ReceivedFoodDto[];
   organizationAgents?: CreateOrganizationAgentDto[];
 }

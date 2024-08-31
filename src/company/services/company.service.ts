@@ -17,7 +17,7 @@ export class CompanyService {
   async findCompanyById(id: string): Promise<Company> {
     const company = await this.companyRepository.findCompanyById(id);
     if (!company) {
-      throw new NotFoundException(`Empresa com o id: ${id} não encontrada!`);
+      throw new NotFoundException(`Empresa não encontrada!`);
     }
     return company;
   }

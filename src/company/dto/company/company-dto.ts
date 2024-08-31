@@ -1,4 +1,4 @@
-import { CompanyAgentDto } from '../agent/agent-company.dto';
+import { AgentCompanyDto } from '../agent/agent-company.dto';
 
 export class CompanyDto {
   id: string;
@@ -9,5 +9,5 @@ export class CompanyDto {
   email: string;
   password: string;
   phone: string;
-  companyAgents: CompanyAgentDto[];
+  companyAgents: AgentCompanyDto[];
 }

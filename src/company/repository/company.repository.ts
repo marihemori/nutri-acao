@@ -14,14 +14,15 @@ export class CompanyRepository implements ICompanyRepository {
 
   // Encontrar todas as empresas
   async findAllCompanies(): Promise<Company[]> {
-    return this.companyRepository.find();
+    return this.companyRepository.find({ relations: ['companyAgents'] });
   }
 
   // Encontrar uma empresa por ID
   async findCompanyById(id: string): Promise<Company> {
-    const company = await this.companyRepository.findOneBy({ id });
-    console.log(company);
-    return company;
+    return this.companyRepository.findOne({
+      where: { id },
+      relations: ['companyAgents'],
+    });
   }
 
   // Criar uma empresa
@@ -37,7 +38,11 @@ export class CompanyRepository implements ICompanyRepository {
   }
 
   // Deletar uma empresa
-  async deleteCompany(id: string): Promise<void> {
-    await this.companyRepository.delete(id);
+  async deleteCompany(id: string): Promise<{ deleted: boolean }> {
+    const result = await this.companyRepository.delete(id);
+    if (result.affected === 0) {
+      throw new Error(`Empresa não encontrada!`);
+    }
+    return { deleted: true };
   }
 }

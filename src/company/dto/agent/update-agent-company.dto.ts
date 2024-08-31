@@ -1,4 +1,4 @@
-export class UpdateCompanyAgentDto {
+export class UpdateAgentCompanyDto {
   name?: string;
   cpf?: string;
   phone?: string;

@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
 // import { Food } from './food.entity';
-import { CompanyAgent } from './agent-company.entity';
+import { AgentCompany } from './agent-company.entity';
 
 @Entity()
 export class Company {
@@ -39,8 +39,8 @@ export class Company {
   // foods: Food[];
 
   // Uma empresa pode ter várias intermediadores
-  @OneToMany(() => CompanyAgent, (agent) => agent.company)
-  companyAgents: CompanyAgent[];
+  @OneToMany(() => AgentCompany, (agent) => agent.company)
+  companyAgents: AgentCompany[];
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createAt: Date;

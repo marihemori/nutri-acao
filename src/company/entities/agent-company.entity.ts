@@ -9,8 +9,8 @@ import {
 import { v4 as uuidv4 } from 'uuid';
 import { Company } from './company.entity';
 
-@Entity()
-export class CompanyAgent {
+@Entity('agent_company')
+export class AgentCompany {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -33,7 +33,9 @@ export class CompanyAgent {
   companyId: string;
 
   // Uma empresa pode ter várias intermediadores
-  @ManyToOne(() => Company, (company) => company.companyAgents)
+  @ManyToOne(() => Company, (company) => company.companyAgents, {
+    cascade: true,
+  })
   @JoinColumn({ name: 'companyId' })
   company: Company;
 

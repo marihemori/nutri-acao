@@ -8,5 +8,5 @@ export interface IOrganizationRepository {
     id: string,
     company: Partial<Organization>,
   ): Promise<Organization>;
-  deleteOrganization(id: string): Promise<void>;
+  deleteOrganization(id: string): Promise<{ deleted: boolean }>;
 }

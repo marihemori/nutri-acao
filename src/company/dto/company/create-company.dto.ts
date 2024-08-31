@@ -1,4 +1,4 @@
-import { CreateCompanyAgentDto } from '../agent/create-agent-company.dto';
+import { CreateAgentCompanyDto } from '../agent/create-agent-company.dto';
 // import { CreateFoodDto } from '../food/create-food.dto';
 
 export class CreateCompanyDto {
@@ -11,5 +11,5 @@ export class CreateCompanyDto {
   password: string;
   phone: string;
   // foodsToDonate: CreateFoodDto[];
-  companyAgents?: CreateCompanyAgentDto[];
+  companyAgents?: CreateAgentCompanyDto[];
 }
