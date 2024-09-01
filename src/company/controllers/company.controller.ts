@@ -11,17 +11,34 @@ import { CreateCompanyDto } from '../dto/company/create-company.dto';
 import { Company } from '../entities/company.entity';
 import { ReceivedFood } from 'src/organization/entities/received-food.entity';
 import { ReceivedFoodDto } from 'src/organization/dto/food/received-food.dto';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Empresas')
 @Controller('company')
 export class CompanyController {
   constructor(private readonly companyService: CompanyService) {}
 
+  @ApiOperation({ summary: 'Lista todas as empresas' })
+  @ApiResponse({
+    status: 200,
+    type: Company,
+    description: 'Lista de empresas',
+  })
+  @ApiResponse({ status: 404, description: 'Empresa não encontrada!' })
   // Encontrar todas as empresas
   @Get()
   async findAllCompanies(): Promise<Company[]> {
     return await this.companyService.findAllCompanies();
   }
 
+  @ApiOperation({ summary: 'Encontra uma empresa por ID' })
+  @ApiResponse({
+    status: 200,
+    type: Company,
+    description: 'Empresa encontrada',
+    isArray: false,
+  })
+  @ApiResponse({ status: 404, description: 'Empresa não encontrada!' })
   // Encontrar uma empresa por ID
   @Get('/:id')
   async findCompanyById(@Param('id') id: string): Promise<Company> {
@@ -30,6 +47,14 @@ export class CompanyController {
     return company;
   }
 
+  @ApiOperation({ summary: 'Cria uma empresa' })
+  @ApiResponse({
+    status: 201,
+    type: Company,
+    description: 'Empresa criada',
+    isArray: false,
+  })
+  @ApiResponse({ status: 404, description: 'Empresa não encontrada!' })
   // Criar uma empresa
   @Post('/create')
   async createCompany(
@@ -38,6 +63,14 @@ export class CompanyController {
     return this.companyService.createCompany(createCompanyDto);
   }
 
+  @ApiOperation({ summary: 'Envia alimento para uma organização' })
+  @ApiResponse({
+    status: 201,
+    type: ReceivedFood,
+    description: 'Alimento enviado',
+    isArray: false,
+  })
+  @ApiResponse({ status: 404, description: 'Empresa não encontrada!' })
   // Enviar alimento para a organização
   @Post(':companyId/organizations/:organizationId/donate-food')
   async sendFoodToOrganization(
